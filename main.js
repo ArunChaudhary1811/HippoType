@@ -141,6 +141,13 @@ document.getElementById('game').addEventListener('keyup', ev => {
             addClass(currentWord.previousSibling.lastChild, 'current');
             removeClass(currentWord.previousSibling.lastChild, 'incorrect');
             removeClass(currentWord.previousSibling.lastChild, 'correct');
+            const extraLetter = document.querySelector('.letter.current.extra');
+            if(extraLetter){
+                removeClass(extraLetter, 'letter');
+                removeClass(extraLetter, 'current');
+                removeClass(extraLetter, 'extra');
+                currentWord.previousSibling.removeChild(currentWord.previousSibling.lastChild);
+            }
         }
         if(currentLetter && !isFirstLetter){
             // Move back one letter, invalidate letter
@@ -155,6 +162,8 @@ document.getElementById('game').addEventListener('keyup', ev => {
             removeClass(currentWord.lastChild, 'correct');
             const extraLetter = document.querySelector('.letter.current.extra');
             if(extraLetter){
+                removeClass(extraLetter, 'letter');
+                removeClass(extraLetter, 'current');
                 removeClass(extraLetter, 'extra');
                 currentWord.removeChild(currentWord.lastChild);
             }
